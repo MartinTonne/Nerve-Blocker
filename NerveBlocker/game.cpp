@@ -1,6 +1,7 @@
 #include "game.h"
 #include "task.h"
 #include "constants.h"
+#include "database.h"
 
 #include <QDebug>
 
@@ -115,6 +116,7 @@ void Game::onTaskAnswered()
 
 void Game::onVideoTaskAnswered(){
      setPoints(m_currentVideoTask->getScore());
+
 }
 void Game::onAnnotationTaskAnswered(){
      setPoints(m_currentAnnotationTask->getScore());

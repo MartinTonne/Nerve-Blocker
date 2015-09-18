@@ -48,9 +48,14 @@ ApplicationWindow {
         // Android back-button
         Keys.onReleased: {
            if (event.key === Qt.Key_Back) {
-               event.accepted = true;
-               mainArea.pop(null);
+               if (mainArea.depth > 1) {
+                   event.accepted = true;
+                   mainArea.pop(null);
+                  } else { Qt.quit(); }
+
+
            }
+
         }
         /*Connections {
             target: Qt.application
@@ -115,6 +120,7 @@ ApplicationWindow {
     Component {
         id: component_about
         About{
+
             onBackButtonClicked: {
                 mainArea.pop();
             }
@@ -176,10 +182,14 @@ ApplicationWindow {
                 mainArea.push(component_annotation);
             }
             onInfoClicked: {
+
                 gamehandler.newGame(Mode.NONE);
                 mainArea.push(component_about);
+
             }
         }
     }
+
+
 
 }

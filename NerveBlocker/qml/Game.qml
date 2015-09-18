@@ -185,7 +185,7 @@ Rectangle {
                 taskConfirmed = true;
                 if(gamehandler.game.currentTask.answerTask(unscaledX, unscaledY) && gamehandler.game.mode === Mode.TIMED){
                     addTime();
-                }
+                }else
                 if(game.currentTask.correct){
                     delay(1000, function() {
                          botNext.nextClicked();

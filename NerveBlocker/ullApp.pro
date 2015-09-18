@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets svg core gui multimedia
+QT += qml quick widgets svg core gui multimedia sql
 
 CONFIG += c++11
 
@@ -12,7 +12,8 @@ SOURCES += main.cpp \
     organ.cpp \
     mode.cpp \
     taskvideo.cpp \
-    taskannotation.cpp
+    taskannotation.cpp \
+    database.cpp
 
 RESOURCES += \
     qml/qml.qrc \
@@ -39,7 +40,8 @@ HEADERS += \
     constants.h \
     mode.h \
     taskvideo.h \
-    taskannotation.h
+    taskannotation.h \
+    database.h
 
 macx:CONFIG += x86
 
