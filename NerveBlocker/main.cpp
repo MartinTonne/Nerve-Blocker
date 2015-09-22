@@ -19,7 +19,9 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<Organ>("UllApp", 1, 0, "Organ", "Organ is uncreatable");
     qmlRegisterUncreatableType<Mode>("UllApp", 1, 0, "Mode", "Mode is uncreatable");
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    database();
+
+    database db;
+    db.open();
 
 
     return app.exec();

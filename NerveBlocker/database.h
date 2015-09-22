@@ -10,8 +10,14 @@
 #include <QDebug>
 class database : public QObject
 {
+    Q_OBJECT
+
+
 public:
-    database();
+    explicit database(QObject *parent = 0);
+
+
+signals:
 
 public slots:
     void checkforupdate(int);
@@ -19,10 +25,12 @@ public slots:
     void close();
     void getUpdate();
     void replyFinished (QNetworkReply *reply);
-
+    void mapreplyFinished (QNetworkReply *reply);
 
 private:
    QNetworkAccessManager *manager;
+   QNetworkAccessManager *manager2;
+
 };
 
 #endif // DATABASE_H

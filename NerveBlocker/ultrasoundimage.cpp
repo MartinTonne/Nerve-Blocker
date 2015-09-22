@@ -1,8 +1,9 @@
 #include "ultrasoundimage.h"
 #include "task.h"
 
+#include <QStandardPaths>
 #include <QImage>
-
+#include <QDebug>
 UltraSoundImage::UltraSoundImage(int imageId, QObject *parent) :
     QObject(parent),
     m_imageId(imageId)
@@ -10,12 +11,20 @@ UltraSoundImage::UltraSoundImage(int imageId, QObject *parent) :
 
 QString UltraSoundImage::getImagePath() const
 {
-    return QString("gameImages/%1.png").arg(m_imageId);
+    QString basePath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0];
+    return QString("file:" +basePath + "\/nerveblocker\/%1.png").arg(m_imageId);
 }
 
 QString UltraSoundImage::getMappedImagePath() const
 {
-    return QString("gameImages/%1_map.png").arg(m_imageId);
+    QString basePath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0];
+    return QString("file:" +basePath + "\/nerveblocker\/%1_map.png").arg(m_imageId);
+}
+
+QString UltraSoundImage::getMappedImagePathAnswer() const
+{
+    QString basePath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0];
+    return QString(basePath + "\/nerveblocker\/%1_map.png").arg(m_imageId);
 }
 
 bool UltraSoundImage::hasOrganTypeAtPosition(int x, int y, Organ::Type organ) const
@@ -37,8 +46,10 @@ bool UltraSoundImage::hasOrganTypeAtPosition(int x, int y, Organ::Type organ) co
 }
 
 bool UltraSoundImage::hasColorInArea(int x, int y, QRgb color, int radius) const{
-    QImage img(":"+getMappedImagePath(), "PNG");
-
+    QImage img(getMappedImagePathAnswer(),"PNG");
+    if(img.isNull()){
+         qDebug() << ":"+getMappedImagePathAnswer(),"PNG";
+    }
     for(int i = x-radius; i < x+radius; ++i){
         for(int k = y-radius; k < y+radius; ++k){
 

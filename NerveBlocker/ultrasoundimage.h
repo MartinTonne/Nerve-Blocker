@@ -19,6 +19,7 @@ signals:
 public slots:
     QString getImagePath() const;
     QString getMappedImagePath() const;
+    QString getMappedImagePathAnswer() const;
     bool hasOrganTypeAtPosition(int x, int y, Organ::Type organ) const;
 
 
