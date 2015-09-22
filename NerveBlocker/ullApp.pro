@@ -1,9 +1,12 @@
 TEMPLATE = app
 
-QT += qml quick widgets svg core gui multimedia sql
-
+QT += qml quick widgets svg core gui sql
+QT +=sql network
+QT +=declarative
 CONFIG += c++11
+DEFINES  += QT_NO_SSL
 
+LIBS += -L"C:\\Program Files\\MySQL\\MySQL Server 5.6\\lib" -llibmysql
 SOURCES += main.cpp \
     gamehandler.cpp \
     task.cpp \
@@ -13,7 +16,9 @@ SOURCES += main.cpp \
     mode.cpp \
     taskvideo.cpp \
     taskannotation.cpp \
-    database.cpp
+    database.cpp \
+    settingsmanager.cpp
+
 
 RESOURCES += \
     qml/qml.qrc \
@@ -41,7 +46,9 @@ HEADERS += \
     mode.h \
     taskvideo.h \
     taskannotation.h \
-    database.h
+    database.h \
+    settingsmanager.h
+
 
 macx:CONFIG += x86
 
