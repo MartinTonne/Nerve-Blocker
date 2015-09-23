@@ -25,11 +25,7 @@ void database::checkforupdate(int localversion){
                 database::getUpdate(localversion);
 
             }
-
             }
-
-
-              qDebug() << localversion << version;
         }
 
 }

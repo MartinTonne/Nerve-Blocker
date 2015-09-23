@@ -23,7 +23,7 @@ public slots:
     void checkforupdate(int);
     void open();
     void close();
-    void getUpdate();
+    void getUpdate(int);
     void replyFinished (QNetworkReply *reply);
     void mapreplyFinished (QNetworkReply *reply);
 
