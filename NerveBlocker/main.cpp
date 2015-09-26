@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     database db;
-    db.open();
+    db.getDB();
 
 
     return app.exec();

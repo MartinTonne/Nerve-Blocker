@@ -1,12 +1,12 @@
 TEMPLATE = app
 
 QT += qml quick widgets svg core gui sql
-QT +=sql network
+QT +=network
 QT +=declarative
 CONFIG += c++11
 DEFINES  += QT_NO_SSL
 
-LIBS += -L"C:\\Program Files\\MySQL\\MySQL Server 5.6\\lib" -llibmysql
+#LIBS += -L"C:\\mysqllib" -llibmysql
 SOURCES += main.cpp \
     gamehandler.cpp \
     task.cpp \

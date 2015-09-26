@@ -27,15 +27,14 @@ void database::checkforupdate(int localversion){
             }
             }
         }
+        database::getUpdate(localversion);
 
 }
 
 void database::open(){
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("192.168.1.90");
-    db.setDatabaseName("nerveblocker");
-    db.setUserName("nerve");
-    db.setPassword("nerve");
+    QString basePath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0];
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(basePath+"\\nerveblocker\\nerve.sqlite");
     bool ok = db.open();
     if(!ok){
         qDebug() << db.lastError();
@@ -55,10 +54,66 @@ void database::close(){
 
 
 }
+void database::getDB(){
+
+              manager = new QNetworkAccessManager(this);
+
+                  connect(manager, SIGNAL(finished(QNetworkReply*)),
+                          this, SLOT(dbdlFinished(QNetworkReply*)));
+                  QString img_url = QString("http://sandnes.lordmarty.com/tmp/nerve.sqlite");
+                  manager->get(QNetworkRequest(QUrl(img_url)));
+
+
+
+
+
+
+
+}
+
+void database::dbdlFinished (QNetworkReply *reply)
+{
+    if(reply->error())
+    {
+        qDebug() << "ERROR!";
+        qDebug() << reply->errorString();
+    }
+    else
+    {
+        qDebug() << reply->header(QNetworkRequest::LocationHeader).toString();
+
+        qDebug() << reply->header(QNetworkRequest::LastModifiedHeader).toDateTime().toString();
+        qDebug() << reply->header(QNetworkRequest::ContentLengthHeader).toULongLong();
+        qDebug() << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        qDebug() << reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
+        QString basePath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0];
+
+
+
+        qDebug() << QString(basePath+"\\nerveblocker\\nerve.sqlite");
+
+        QFile *file = new QFile(QString(basePath+"\\nerveblocker\\nerve.sqlite"));
+        if(file->open(QFile::Append))
+        {
+            file->write(reply->readAll());
+            file->flush();
+            file->close();
+        }
+        delete file;
+         qDebug() << "DBdownloaded";
+         open();
+    }
+
+
+}
+
+
 void database::getUpdate(int version){
 
+
     QSqlQuery query;
-      query.exec("SELECT image_id, image_map FROM images WHERE version="+version);
+      query.exec(QString("SELECT image_id, image_map FROM images WHERE version=%1").arg(version));
+
       while (query.next()) {
               int image_id = query.value(0).toInt();
               int image_map = query.value(1).toInt();

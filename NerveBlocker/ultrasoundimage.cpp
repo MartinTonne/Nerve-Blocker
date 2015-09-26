@@ -48,7 +48,7 @@ bool UltraSoundImage::hasOrganTypeAtPosition(int x, int y, Organ::Type organ) co
 bool UltraSoundImage::hasColorInArea(int x, int y, QRgb color, int radius) const{
     QImage img(getMappedImagePathAnswer(),"PNG");
     if(img.isNull()){
-         qDebug() << ":"+getMappedImagePathAnswer(),"PNG";
+         qDebug() << ":"+getMappedImagePathAnswer();
     }
     for(int i = x-radius; i < x+radius; ++i){
         for(int k = y-radius; k < y+radius; ++k){

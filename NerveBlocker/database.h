@@ -8,6 +8,8 @@
 #include <QDateTime>
 #include <QFile>
 #include <QDebug>
+#include <QtSql>
+
 class database : public QObject
 {
     Q_OBJECT
@@ -24,13 +26,15 @@ public slots:
     void open();
     void close();
     void getUpdate(int);
+    void getDB();
     void replyFinished (QNetworkReply *reply);
     void mapreplyFinished (QNetworkReply *reply);
+    void dbdlFinished (QNetworkReply *reply);
 
 private:
    QNetworkAccessManager *manager;
    QNetworkAccessManager *manager2;
-
+   QSqlDatabase db;
 };
 
 #endif // DATABASE_H
