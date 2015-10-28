@@ -1,4 +1,4 @@
-#include "settingsmanager.h"
+#import "settingsmanager.h"
 
 
 SettingsManager::SettingsManager()

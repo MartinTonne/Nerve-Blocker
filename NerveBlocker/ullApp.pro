@@ -1,10 +1,9 @@
 TEMPLATE = app
 
-QT += qml quick widgets svg core gui sql
+QT += qml quick widgets svg core gui sql multimedia
 QT +=network
-QT +=declarative
 CONFIG += c++11
-DEFINES  += QT_NO_SSL
+QTPLUGIN += qavfmediaplayer
 
 #LIBS += -L"C:\\mysqllib" -llibmysql
 SOURCES += main.cpp \
@@ -16,8 +15,7 @@ SOURCES += main.cpp \
     mode.cpp \
     taskvideo.cpp \
     taskannotation.cpp \
-    database.cpp \
-    settingsmanager.cpp
+    database.cpp
 
 
 RESOURCES += \
@@ -25,8 +23,7 @@ RESOURCES += \
     fonts/fonts.qrc\
     images/images.qrc
 
-# Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
+
 
 # Default rules for deployment.
 include(deployment.pri)
@@ -46,8 +43,7 @@ HEADERS += \
     mode.h \
     taskvideo.h \
     taskannotation.h \
-    database.h \
-    settingsmanager.h
+    database.h
 
 
 macx:CONFIG += x86

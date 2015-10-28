@@ -32,9 +32,9 @@ void database::checkforupdate(int localversion){
 }
 
 void database::open(){
-    QString basePath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0];
+    QString basePath = QCoreApplication::applicationDirPath();
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(basePath+"\\nerveblocker\\nerve.sqlite");
+    db.setDatabaseName(basePath+"/nerveblocker/nerve.sqlite");
     bool ok = db.open();
     if(!ok){
         qDebug() << db.lastError();
@@ -80,24 +80,24 @@ void database::dbdlFinished (QNetworkReply *reply)
     }
     else
     {
-        qDebug() << reply->header(QNetworkRequest::LocationHeader).toString();
 
-        qDebug() << reply->header(QNetworkRequest::LastModifiedHeader).toDateTime().toString();
-        qDebug() << reply->header(QNetworkRequest::ContentLengthHeader).toULongLong();
-        qDebug() << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        qDebug() << reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
-        QString basePath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0];
+        QString basePath = QCoreApplication::applicationDirPath();
 
 
 
-        qDebug() << QString(basePath+"\\nerveblocker\\nerve.sqlite");
+        qDebug() << QString(basePath+"/nerveblocker/nerve.sqlite");
 
-        QFile *file = new QFile(QString(basePath+"\\nerveblocker\\nerve.sqlite"));
+
+
+        if(!QDir(basePath+"/nerveblocker/").exists())
+            QDir().mkdir(basePath+"/nerveblocker/");
+        QFile *file = new QFile(QString(basePath+"/nerveblocker/nerve.sqlite"));
         if(file->open(QFile::Append))
         {
             file->write(reply->readAll());
             file->flush();
             file->close();
+            qDebug() << "fileopen and appending";
         }
         delete file;
          qDebug() << "DBdownloaded";
@@ -147,19 +147,14 @@ void database::replyFinished (QNetworkReply *reply)
     }
     else
     {
-        qDebug() << reply->header(QNetworkRequest::LocationHeader).toString();
 
-        qDebug() << reply->header(QNetworkRequest::LastModifiedHeader).toDateTime().toString();
-        qDebug() << reply->header(QNetworkRequest::ContentLengthHeader).toULongLong();
-        qDebug() << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        qDebug() << reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
-        QString basePath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0];
+        QString basePath = QCoreApplication::applicationDirPath();
 
         int image_id = reply->property("imageid").toInt();
-        qDebug() << image_id;
-        qDebug() << QString(basePath+"\\nerveblocker\\%1.png").arg(image_id);
 
-        QFile *file = new QFile(QString(basePath+"\\nerveblocker\\%1.png").arg(image_id));
+        qDebug() << QString(basePath+"/nerveblocker/%1.png").arg(image_id);
+
+        QFile *file = new QFile(QString(basePath+"/nerveblocker/%1.png").arg(image_id));
         if(file->open(QFile::Append))
         {
             file->write(reply->readAll());
@@ -181,19 +176,14 @@ void database::mapreplyFinished (QNetworkReply *reply2)
     }
     else
     {
-        qDebug() << reply2->header(QNetworkRequest::LocationHeader).toString();
 
-        qDebug() << reply2->header(QNetworkRequest::LastModifiedHeader).toDateTime().toString();
-        qDebug() << reply2->header(QNetworkRequest::ContentLengthHeader).toULongLong();
-        qDebug() << reply2->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        qDebug() << reply2->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
-        QString basePath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0];
+        QString basePath = QCoreApplication::applicationDirPath();
 
         int image_map = reply2->property("imagemap").toInt();
         qDebug() << image_map;
-        qDebug() << QString(basePath+"\\nerveblocker\\%1_map.png").arg(image_map);
+        qDebug() << QString(basePath+"/nerveblocker/%1_map.png").arg(image_map);
 
-        QFile *file = new QFile(QString(basePath+"\\nerveblocker\\%1_map.png").arg(image_map));
+        QFile *file = new QFile(QString(basePath+"/nerveblocker/%1_map.png").arg(image_map));
         if(file->open(QFile::Append))
         {
             file->write(reply2->readAll());

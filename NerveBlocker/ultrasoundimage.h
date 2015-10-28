@@ -1,10 +1,9 @@
 #ifndef ULTRASOUNDIMAGE_H
 #define ULTRASOUNDIMAGE_H
 
-#include <QObject>
 #include <QColor>
 
-#include "organ.h"
+#import "organ.h"
 
 class UltraSoundImage : public QObject
 {

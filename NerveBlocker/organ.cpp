@@ -1,4 +1,4 @@
-#include "organ.h"
+#import "organ.h"
 
 Organ::Organ(QObject *parent) :
     QObject(parent)
