@@ -12,20 +12,20 @@ UltraSoundImage::UltraSoundImage(int imageId, QObject *parent) :
 
 QString UltraSoundImage::getImagePath() const
 {
-    QString basePath = QCoreApplication::applicationDirPath();
-    return QString("file:" +basePath + "/nerveblocker/%1.png").arg(m_imageId);
+    QString basePath = QStandardPaths::standardLocations(QStandardPaths::DataLocation).value(0);
+    return QString("file:" +basePath + "/%1.png").arg(m_imageId);
 }
 
 QString UltraSoundImage::getMappedImagePath() const
 {
-    QString basePath = QCoreApplication::applicationDirPath();
-    return QString("file:" +basePath + "/nerveblocker/%1_map.png").arg(m_imageId);
+    QString basePath = QStandardPaths::standardLocations(QStandardPaths::DataLocation).value(0);
+    return QString("file:" +basePath + "/%1_map.png").arg(m_imageId);
 }
 
 QString UltraSoundImage::getMappedImagePathAnswer() const
 {
-    QString basePath = QCoreApplication::applicationDirPath();
-    return QString(basePath + "/nerveblocker/%1_map.png").arg(m_imageId);
+    QString basePath = QStandardPaths::standardLocations(QStandardPaths::DataLocation).value(0);
+    return QString(basePath + "/%1_map.png").arg(m_imageId);
 }
 
 bool UltraSoundImage::hasOrganTypeAtPosition(int x, int y, Organ::Type organ) const

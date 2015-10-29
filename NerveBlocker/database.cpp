@@ -16,7 +16,7 @@ void database::checkforupdate(int localversion){
         query.exec("SELECT version FROM version DECS");
         while (query.next()) {
         int version = query.value(0).toInt();
-
+        qDebug() << "local version "<< localversion << " db version " <<version;
         if(version > localversion){
             QSettings s;
             s.setValue("version", version);
@@ -27,24 +27,24 @@ void database::checkforupdate(int localversion){
             }
             }
         }
+        qDebug() << "Get update";
         database::getUpdate(localversion);
 
 }
 
 void database::open(){
-    QString basePath = QCoreApplication::applicationDirPath();
+    QString basePath = QStandardPaths::standardLocations(QStandardPaths::DataLocation).value(0);
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(basePath+"/nerveblocker/nerve.sqlite");
+    db.setDatabaseName(basePath+"/nerve.sqlite");
     bool ok = db.open();
     if(!ok){
         qDebug() << db.lastError();
 
     }else{
-
+        qDebug() << "Check version";
 
         QSettings s;
         int version = s.value("version", 0).toInt();
-
         database::checkforupdate(version);
 
     }
@@ -81,23 +81,26 @@ void database::dbdlFinished (QNetworkReply *reply)
     else
     {
 
-        QString basePath = QCoreApplication::applicationDirPath();
+        QString basePath = QStandardPaths::standardLocations(QStandardPaths::DataLocation).value(0);
 
 
 
-        qDebug() << QString(basePath+"/nerveblocker/nerve.sqlite");
+        qDebug() << QString(basePath+"/nerve.sqlite");
+        QString path = QStandardPaths::standardLocations(QStandardPaths::DataLocation).value(0);
+        QDir dir(path);
+        if (!dir.exists())
+        dir.mkpath(path);
 
 
-
-        if(!QDir(basePath+"/nerveblocker/").exists())
-            QDir().mkdir(basePath+"/nerveblocker/");
-        QFile *file = new QFile(QString(basePath+"/nerveblocker/nerve.sqlite"));
+        QFile *file = new QFile(QString(path+"/nerve.sqlite"));
         if(file->open(QFile::Append))
         {
             file->write(reply->readAll());
             file->flush();
             file->close();
             qDebug() << "fileopen and appending";
+        }else{
+            qDebug() << "Download error!";
         }
         delete file;
          qDebug() << "DBdownloaded";
@@ -115,6 +118,7 @@ void database::getUpdate(int version){
       query.exec(QString("SELECT image_id, image_map FROM images WHERE version=%1").arg(version));
 
       while (query.next()) {
+            qDebug() << "downloading images";
               int image_id = query.value(0).toInt();
               int image_map = query.value(1).toInt();
               manager = new QNetworkAccessManager(this);
@@ -148,13 +152,13 @@ void database::replyFinished (QNetworkReply *reply)
     else
     {
 
-        QString basePath = QCoreApplication::applicationDirPath();
+        QString basePath = QStandardPaths::standardLocations(QStandardPaths::DataLocation).value(0);
 
         int image_id = reply->property("imageid").toInt();
 
-        qDebug() << QString(basePath+"/nerveblocker/%1.png").arg(image_id);
+        qDebug() << QString(basePath+"/%1.png").arg(image_id);
 
-        QFile *file = new QFile(QString(basePath+"/nerveblocker/%1.png").arg(image_id));
+        QFile *file = new QFile(QString(basePath+"/%1.png").arg(image_id));
         if(file->open(QFile::Append))
         {
             file->write(reply->readAll());
@@ -177,13 +181,13 @@ void database::mapreplyFinished (QNetworkReply *reply2)
     else
     {
 
-        QString basePath = QCoreApplication::applicationDirPath();
+        QString basePath = QStandardPaths::standardLocations(QStandardPaths::DataLocation).value(0);
 
         int image_map = reply2->property("imagemap").toInt();
         qDebug() << image_map;
-        qDebug() << QString(basePath+"/nerveblocker/%1_map.png").arg(image_map);
+        qDebug() << QString(basePath+"/%1_map.png").arg(image_map);
 
-        QFile *file = new QFile(QString(basePath+"/nerveblocker/%1_map.png").arg(image_map));
+        QFile *file = new QFile(QString(basePath+"/%1_map.png").arg(image_map));
         if(file->open(QFile::Append))
         {
             file->write(reply2->readAll());
