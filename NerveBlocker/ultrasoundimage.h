@@ -3,7 +3,7 @@
 
 #include <QColor>
 
-#import "organ.h"
+#include "organ.h"
 
 class UltraSoundImage : public QObject
 {
