@@ -1,4 +1,4 @@
-#import "mode.h"
+#include "mode.h"
 
 Mode::Mode(QObject *parent):
     QObject(parent)

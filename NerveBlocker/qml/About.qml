@@ -17,13 +17,16 @@ Rectangle {
         anchors.top: parent.top
         anchors.topMargin: parent.height/20
     }
+
+
     Text{
         id: introText
-        text: "This app is the result of a master's\
-         \nproject developed at the Norwegian University \
-         \nof Science and Technology (NTNU) in collaboration\
-         \nwith SINTEF and St. Olav's Hospital. It is provided \
-         \nfree of charge for the purpose of education."
+        text: "This app is the result of a two master student\
+        \nprojects at the Norwegian University of Science\
+        \nand Technology (NTNU)in collaboration \
+        \nwith SINTEF and St. Olav's Hospital. \
+        \nIt is provided free of charge\
+        \nfor the purpose of education."
         horizontalAlignment: Text.AlignHCenter
         color: "white"
         font.family: ubuntu.name
@@ -78,9 +81,11 @@ Rectangle {
     Text{
         id: sincerely
         text: "Sincerely,\
-        \nSolveig Hellan\
-        \nand\
-        \nHanna Holler Kamperud"
+        \n Master students: Solveig Hellan,\
+        \nHanna Holler Kamperud and\
+        \nMartin S. Tønnessen\
+        \nSuperviser: Frank Lindseth\
+        \nPhysician: Kaj F. Johansen"
         horizontalAlignment: Text.AlignHCenter
         color: "white"
         font.family: ubuntu.name

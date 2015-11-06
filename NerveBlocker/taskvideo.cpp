@@ -1,5 +1,5 @@
-#import "taskvideo.h"
-#import "constants.h"
+#include "taskvideo.h"
+#include "constants.h"
 
 #include <QVector>
 #include <QDebug>

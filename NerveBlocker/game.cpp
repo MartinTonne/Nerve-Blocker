@@ -1,7 +1,7 @@
-#import "game.h"
-#import "task.h"
-#import "constants.h"
-#import "database.h"
+#include "game.h"
+#include "task.h"
+#include "constants.h"
+#include "database.h"
 
 #include <QDebug>
 

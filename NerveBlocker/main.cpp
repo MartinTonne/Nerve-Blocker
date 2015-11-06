@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<Mode>("UllApp", 1, 0, "Mode", "Mode is uncreatable");
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
+
     database db;
     db.getDB();
 
