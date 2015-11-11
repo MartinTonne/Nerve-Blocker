@@ -5,6 +5,7 @@
 #include <QQmlContext>
 #include <QtQml>
 #include <QtSql>
+#include <QtQuick>
 #include "database.h"
 
 int main(int argc, char *argv[])
@@ -19,7 +20,6 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<Organ>("UllApp", 1, 0, "Organ", "Organ is uncreatable");
     qmlRegisterUncreatableType<Mode>("UllApp", 1, 0, "Mode", "Mode is uncreatable");
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-
 
     database db;
     db.getDB();

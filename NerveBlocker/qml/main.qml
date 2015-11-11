@@ -10,7 +10,6 @@ ApplicationWindow {
     property string blueLight: "#1fdada"
     property string backgroundGrey: "#222222"
 
-
     visible: true
 
     // 4:3
@@ -151,6 +150,7 @@ ApplicationWindow {
     }
 
 
+
     Component {
         id: component_mainMenu
         StartMenu {
@@ -187,9 +187,11 @@ ApplicationWindow {
                 mainArea.push(component_about);
 
             }
+            onFeedbackClicked: {
+
+            }
         }
     }
-
 
 
 }

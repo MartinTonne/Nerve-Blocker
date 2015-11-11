@@ -15,6 +15,7 @@ class GameHandler : public QObject
 public:
     GameHandler(QObject *parent = nullptr);
     Q_INVOKABLE void newGame(int);
+    Q_INVOKABLE void openurl();
     Game* getGame();
     int getHighScore();
 

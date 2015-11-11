@@ -18,7 +18,6 @@ class database : public QObject
 public:
     explicit database(QObject *parent = 0);
 
-
 signals:
 
 public slots:

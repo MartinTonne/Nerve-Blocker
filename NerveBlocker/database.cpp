@@ -2,6 +2,8 @@
 
 #include <QtSql>
 #include <QApplication>
+#include <QDesktopServices>
+#include <QUrl>
 
 database::database(QObject *parent) :
     QObject(parent)
@@ -51,9 +53,8 @@ void database::open(){
 }
 void database::close(){
 
-
-
 }
+
 void database::getDB(){
 
               manager = new QNetworkAccessManager(this);
@@ -62,11 +63,6 @@ void database::getDB(){
                           this, SLOT(dbdlFinished(QNetworkReply*)));
                   QString img_url = QString("http://sandnes.lordmarty.com/tmp/nerve.sqlite");
                   manager->get(QNetworkRequest(QUrl(img_url)));
-
-
-
-
-
 
 
 }

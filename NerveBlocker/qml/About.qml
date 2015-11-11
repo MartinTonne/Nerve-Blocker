@@ -7,7 +7,7 @@ Rectangle {
 
     Text {
         id: title
-        text: "ABOUT"
+        text: "ABOUT Version 1.3"
         horizontalAlignment: Text.AlignHCenter
         color: "white"
         font.family: ubuntu.name

@@ -10,6 +10,8 @@
 #include <QFileInfo>
 #include <cstdlib>
 #include <time.h>
+#include <QDesktopServices>
+#include <QUrl>
 
 GameHandler::GameHandler(QObject *parent) :
     QObject(parent),
@@ -29,6 +31,9 @@ void GameHandler::newGame(int mode)
 
 }
 
+void GameHandler::openurl(){
+    QDesktopServices::openUrl (QUrl("https://docs.google.com/forms/d/1thezb5f1ACiITktHrmXqLl8bRYUfiZyXGwVT_rnfPDE/viewform", QUrl::TolerantMode));
+}
 
 Game *GameHandler::getGame()
 {
