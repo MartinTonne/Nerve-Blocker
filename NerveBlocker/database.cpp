@@ -5,6 +5,10 @@
 #include <QDesktopServices>
 #include <QUrl>
 
+QString m_path ;
+QString m_filename;
+QSettings * p_settings;
+
 database::database(QObject *parent) :
     QObject(parent)
 {
@@ -20,17 +24,17 @@ void database::checkforupdate(int localversion){
         int version = query.value(0).toInt();
         qDebug() << "local version "<< localversion << " db version " <<version;
         if(version > localversion){
-            QSettings s;
-            s.setValue("version", version);
+
+
             while(version>localversion){
+                qDebug() << "Get update";
                 localversion++;
                 database::getUpdate(localversion);
 
             }
+            p_settings->setValue("version", version);
             }
         }
-        qDebug() << "Get update";
-        database::getUpdate(localversion);
 
 }
 
@@ -44,9 +48,11 @@ void database::open(){
 
     }else{
         qDebug() << "Check version";
-
-        QSettings s;
-        int version = s.value("version", 0).toInt();
+        m_path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) ;
+        m_filename = "config.ini" ;
+        p_settings = new QSettings(m_path + "/"+ m_filename,QSettings::IniFormat) ;
+        int version = p_settings->value("version", 0).toInt();
+        qDebug() << "Version = " << version;
         database::checkforupdate(version);
 
     }

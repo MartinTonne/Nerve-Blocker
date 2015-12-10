@@ -46,6 +46,8 @@ bool Game::isFinished() const
     return m_tasksAnswered >= MAX_TASKS_PER_GAME;
 }
 
+
+
 Mode::Type Game::getMode()
 {
     return m_mode;

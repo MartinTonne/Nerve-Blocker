@@ -47,7 +47,7 @@ Item {
         radius: 3
         z: 2
         x: greyBar.x
-
+        visible: !taskActive
         anchors.top: parent.top
 
 
@@ -85,14 +85,15 @@ Item {
         height: parent.height/5
         color: taskActive ? "grey" : "red"
         radius: 3
-
+        visible: !taskActive
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
     }
 
     MouseArea {
         id: progressArea
-        visible: circle.visible
+        //visible: circle.visible
+        visible: !taskActive
         anchors.fill: greyBar
         anchors.margins: -greyBar.height
         drag.target: circle

@@ -10,7 +10,7 @@ Rectangle {
 
     property var startTime
     property var answerTime
-    property real bonusTime: 0.15
+    property real bonusTime: 0.08
     property int maxTime: 15000
 
     property var unscaledX
@@ -85,7 +85,7 @@ Rectangle {
         case Organ.ILIACA:
             return "Fascia Iliaca";
         case Organ.LATA:
-            return "Vascular Sheeth";
+            return "Vascular Sheath";
         case Organ.NERVE:
             return "Femoral Nerve";
         default:

@@ -34,7 +34,7 @@ Rectangle {
             wrapMode: Text.WordWrap
 
             property string text1: "Pause the video when you find the perfect\nposition and click confirm"
-            property string text2: "The closest good spot is shown below.\nGo to next page to see your score"
+            property string text2: "The good positions is marked in green.\nGo to next page to see your score"
 
         }
     }
@@ -66,6 +66,7 @@ Rectangle {
             onTriggered:{
                 if(parent.position>5000 && (parent.duration - parent.position)<200){
                     parent.seek(0);
+                    parent.play();
                 }
             }
         }

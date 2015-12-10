@@ -73,8 +73,9 @@ ApplicationWindow {
         id: component_GameFinished
         FinishedScreen {
             onMainMenuClicked: {
+                mainArea.pop(component_GameFinished);
                 mainArea.pop();
-                mainArea.pop();
+
             }
             onPlayAgainClicked: {
                 gamehandler.newGame(gamehandler.game.mode);
@@ -103,6 +104,7 @@ ApplicationWindow {
                 mainArea.pop();
             }
             onGameSummaryClicked: {
+                mainArea.pop();
                 mainArea.push(component_GameFinished);
             }
         }
@@ -187,9 +189,7 @@ ApplicationWindow {
                 mainArea.push(component_about);
 
             }
-            onFeedbackClicked: {
 
-            }
         }
     }
 

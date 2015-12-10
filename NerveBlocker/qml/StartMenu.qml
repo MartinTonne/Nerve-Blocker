@@ -246,5 +246,26 @@ Rectangle {
 
         }
     }
+    StartMenuPlayButton{
+        id: susfeedback
+        text: qsTr("quick feedback")
+
+        fontSize: parent.width/30
+
+        height: (parent.width * 3) / 35
+        width: (parent.width * 10) / 35
+
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+
+        anchors.verticalCenterOffset: parent.height / 2.3
+        anchors.horizontalCenterOffset: -parent.width / 3
+
+        onClicked: {
+
+            gamehandler.openSUSurl()
+
+        }
+    }
 
 }

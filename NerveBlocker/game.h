@@ -31,6 +31,7 @@ public:
     TaskVideo* getCurrentVideoTask();
     TaskAnnotation* getCurrentAnnotationTask();
     bool isFinished() const;
+
     void addPoints(int pointsToBeAdded);
     Mode::Type getMode();
 

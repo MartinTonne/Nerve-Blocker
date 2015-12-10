@@ -25,6 +25,27 @@ Item {
         anchors.right: parent.right
         anchors.left: parent.left
     }
+
+    Text {
+        color: "white"
+        text:  qsTr("" + gamehandler.game.tasksAnswered  +"/" + gamehandler.maxtasks)
+        font.family: ubuntu.name
+        font.pixelSize:main.height/main.width<1.5 ? parent.width/22 : parent.width/18
+
+        visible: gamehandler.game.mode !== Mode.TIMED
+
+        verticalAlignment: Text.AlignBottom
+        horizontalAlignment: Text.AlignHCenter
+
+        anchors.top: parent.top
+        anchors.topMargin: main.height/main.width<1.5 ? parent.height/20 : parent.height/10
+
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: -parent.width / 20
+        anchors.horizontalCenterOffset: -parent.width / 2.8
+
+
+    }
     
     Text {
         id: question2
@@ -72,8 +93,7 @@ Item {
         font.family: ubuntu.name
         font.pixelSize: main.height/main.width<1.5 ? parent.width/25 : parent.width/18
         
-        visible: (gamehandler.game.mode === Mode.TUTORIAL
-                  || task.answered && !task.correct && gamehandler.game.mode != Mode.TIMED)
+        visible: task.answered && !task.correct && gamehandler.game.mode !== Mode.TIMED
         verticalAlignment: Text.AlignBottom
         horizontalAlignment: Text.AlignHCenter
         

@@ -35,6 +35,10 @@ void GameHandler::openurl(){
     QDesktopServices::openUrl (QUrl("https://docs.google.com/forms/d/1thezb5f1ACiITktHrmXqLl8bRYUfiZyXGwVT_rnfPDE/viewform", QUrl::TolerantMode));
 }
 
+void GameHandler::openSUSurl(){
+    QDesktopServices::openUrl (QUrl("https://docs.google.com/forms/d/1Ed8FPmoiVGKy2wyHzbl16Y4_YUQtw6l68L1b3z5PZ-M/viewform", QUrl::TolerantMode));
+}
+
 Game *GameHandler::getGame()
 {
     return m_game;
@@ -65,6 +69,9 @@ void GameHandler::updateHighScore()
     }
 
 
+}
+int GameHandler::getmaxTasks(){
+    return MAX_TASKS_PER_GAME;
 }
 
 

@@ -10,14 +10,17 @@ class GameHandler : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int highscore READ getHighScore NOTIFY highScoreChanged)
+    Q_PROPERTY(int maxtasks READ getmaxTasks)
     Q_PROPERTY(QObject *game READ getGame NOTIFY gameChanged)
 
 public:
     GameHandler(QObject *parent = nullptr);
     Q_INVOKABLE void newGame(int);
     Q_INVOKABLE void openurl();
+    Q_INVOKABLE void openSUSurl();
     Game* getGame();
     int getHighScore();
+    int getmaxTasks();
 
 signals:
     void gameChanged(Game* newGame);

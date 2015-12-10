@@ -67,7 +67,7 @@ Rectangle {
     Text{
         id: github
         text: "The source code can be found at \
-        \nwww.github.com/blackCheetah/RegAnesthAppMSc"
+        \ngithub.com/MartinTonne/Nerve-Blocker/"
         horizontalAlignment: Text.AlignHCenter
         color: "white"
         font.family: ubuntu.name
